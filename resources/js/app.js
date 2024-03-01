@@ -1,9 +1,15 @@
 import './bootstrap';
-import { createApp } from 'vue';
-import App from './components/Home.vue';
-import TheList from './components/ToDoListComponent.vue';
-import '../css/app.css';
 
-createApp(App).mount('#app');
+// main.js
+import { createApp } from 'vue';
+import Home from './components/Home.vue';
+import router from './router'; // Import the router instance
+
+
+const app = createApp(Home);
+app.use(router)
+
+app.mount('#app');
+
 
 

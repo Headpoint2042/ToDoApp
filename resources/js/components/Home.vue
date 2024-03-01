@@ -19,7 +19,6 @@ import Register from './RegisterComponent.vue'
 export default {
     data() {
         return {
-            message : "Eskere",
             signIn: true,
         };
     },
