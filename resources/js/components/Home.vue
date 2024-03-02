@@ -3,8 +3,8 @@
         <div class="text-5xl text-white p-8 mb-6">
             <h1 class="flex justify-center font-black">ToDo App</h1>
         </div>
-        <div class="w-full flex justify-center">
-            <div class="w-3/12 self-center">
+        <div class="flex justify-center">
+            <div class="self-center w-96">
                 <Login v-if="signIn" @sign-up="renderSignUp"/>
                 <Register v-else @sign-in="renderSignIn"/>
             </div>

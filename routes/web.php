@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function () {
     return view('login');
 })->where('any', '.*');
+
+
+
+Route::post('/api/register', function (Request $request) {
+    $email = $request->input('email');
+    return response()->json(['email' => $email], 201);
+})->name('register');
+
+
+Route::post('/api/login', function (Request $request){
+    return "logged in";
+});
