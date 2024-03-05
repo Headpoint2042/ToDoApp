@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use app\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,9 @@ Route::get('/{any}', function () {
 
 
 
-Route::post('/api/register', function (Request $request) {
-    $email = $request->input('email');
-    return response()->json(['email' => $email], 201);
-})->name('register');
+Route::post('/api/register', [AuthenticationController::class, 'register'])->name('register');
 
 
-Route::post('/api/login', function (Request $request){
-    return "logged in";
-});
+Route::post('/api/login', [AuthenticationController::class, 'authenticate'])->name('login');
+
+Route::post('/api/logout', [AuthenticationController::class, 'logout'])->name('logout');

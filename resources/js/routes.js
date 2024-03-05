@@ -4,5 +4,5 @@ import DashboardComponent from "./components/DashboardComponent.vue";
 
 export default [
     { path: '/', component: Home, name: 'home'},
-    { path: '/dashboard', component: DashboardComponent, name: 'dashboard'}
+    { path: '/dashboard', component: DashboardComponent, name: 'dashboard', meta: {requiresAuth: true}}
 ];
