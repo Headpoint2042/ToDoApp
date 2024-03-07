@@ -12,9 +12,14 @@ class AuthenticationController extends Controller
 {
     public function authenticate(Request $request): RedirectResponse
     {
+        echo "Authenticate";
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'password.required' => 'The password field is required.',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -32,9 +37,14 @@ class AuthenticationController extends Controller
     }
 
     public function register(Request $request) {
-        $credentials =$request->validate([
+        $credentials = $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+        ], [
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique:users' => 'The email is already registered',
+            'password.required' => 'The password field is required.',
         ]);
 
         $user = new User();

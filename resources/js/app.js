@@ -18,6 +18,7 @@ import store from './store'; // Import Vuex store
 
 const app = createApp(Home);
 app.use(router)
+app.use(store)
 
 router.beforeEach((to, from, next) => {
     // Check if the route requires authentication
@@ -25,7 +26,7 @@ router.beforeEach((to, from, next) => {
       // Check if user is authenticated using Vuex store
       if (!store.getters.isAuthenticated) {
         // If not authenticated, redirect to login page
-        next('/login');
+        next('/');
       } else {
         // If authenticated, proceed to the requested route
         next();

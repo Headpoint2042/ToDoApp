@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use app\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +26,4 @@ Route::post('/api/register', [AuthenticationController::class, 'register'])->nam
 
 Route::post('/api/login', [AuthenticationController::class, 'authenticate'])->name('login');
 
-Route::post('/api/logout', [AuthenticationController::class, 'logout'])->name('logout');
+Route::post('/api/logout', [AuthenticationController::class, 'logout'])->name('logout')->middleware('auth:sanctum');

@@ -16,10 +16,14 @@ const store = createStore({
     },
   },
   actions: {
-    login({ commit }, credentials) {
-      axios.post('/login', credentials)
+    login({ commit }, {address, credentials}) {
+
+      axios.post(address, credentials)
         .then(response => {
+            console.log(response.data)
           commit('setUser', response.data.user);
+          resolve(response.data.redirect);
+          console.log("Redirect")
         })
         .catch(error => {
           console.error(error);
