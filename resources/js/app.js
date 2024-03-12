@@ -2,7 +2,7 @@ import './bootstrap';
 
 // main.js
 import { createApp } from 'vue';
-import Home from './components/Home.vue';
+import App from './components/App.vue';
 import router from './router'; // Import the router instance
 import store from './store'; // Import Vuex store
 
@@ -16,7 +16,7 @@ import store from './store'; // Import Vuex store
 //     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 // }
 
-const app = createApp(Home);
+const app = createApp(App);
 app.use(router)
 app.use(store)
 
@@ -24,9 +24,9 @@ router.beforeEach((to, from, next) => {
     // Check if the route requires authentication
     if (to.matched.some(record => record.meta.requiresAuth)) {
       // Check if user is authenticated using Vuex store
-      if (!store.getters.isAuthenticated) {
+      if (!store.getters.isLoggedIn) {
         // If not authenticated, redirect to login page
-        next('/');
+        next({ name: 'home' }); // Assuming 'home' is the name of your login route
       } else {
         // If authenticated, proceed to the requested route
         next();
@@ -35,7 +35,8 @@ router.beforeEach((to, from, next) => {
       // If route doesn't require authentication, proceed as normal
       next();
     }
-  });
+});
+
 
 app.mount('#app');
 

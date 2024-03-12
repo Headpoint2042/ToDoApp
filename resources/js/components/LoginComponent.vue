@@ -38,7 +38,12 @@ export default {
             this.$emit('sign-up');
         },
         doLogin() {
-            this.login('/api/login', {email:this.email, password:this.password});
+            this.login({address: '/api/login', credentials: { email:this.email, password:this.password}})
+                .then(redirect => {
+                    this.$router.push({ name: 'dashboard' });
+                });
+
+
         }
 
     }

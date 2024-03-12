@@ -48,7 +48,10 @@ export default {
                 alert('Passwords do not match');
                 return;
             }
-            this.login('/api/register', { email:this.email, password:this.password});
+            this.login({address: '/api/register', credentials: { email:this.email, password:this.password}})
+                .then(redirect => {
+                    router.push(redirect)
+                });
 
         }
     }

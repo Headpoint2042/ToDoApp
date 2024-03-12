@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function authenticate(Request $request): RedirectResponse
+    public function authenticate(Request $request)
     {
-        echo "Authenticate";
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
