@@ -10,18 +10,18 @@ class DashboardController extends Controller
 
     public function createTask(Request $request){
 
-        $validatedData = $request ->validate([
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8'
-        ]);
+        // $validatedData = $request ->validate([
+        //     'email' => 'required|email|unique:users,email',
+        //     'password' => 'required|string|min:8'
+        // ]);
 
-        $user = new User();
+        // $user = new User();
 
-        $user -> email = $validatedData['email'];
-        $user -> password = $validatedData['password'];
+        // $user -> email = $validatedData['email'];
+        // $user -> password = $validatedData['password'];
 
-        $user -> save();
+        // $user -> save();
 
-        return "created successfully";
+        // return "created successfully";
     }
 }

@@ -63,14 +63,15 @@ class AuthenticationController extends Controller
         return response()->json(['message' => 'User registration failed'], 422);
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request)
 {
-        Auth::logout();
+    $request->user()->tokens()->delete(); // Revoke all tokens for the authenticated user
 
-        $request->session()->invalidate();
+    // Optionally, clear any session data
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        $request->session()->regenerateToken();
+    return response()->json(['message' => 'Logged out successfully']);
+}
 
-        return redirect('/');
-    }
 }

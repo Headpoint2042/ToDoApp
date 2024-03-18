@@ -1,7 +1,12 @@
 <template>
     <div class="h-screen flex flex-col" :style="changeOpacity">
-        <div class="text-5xl text-white p-4">
-            <h1 class="flex justify-center font-black">My TODO Tasks</h1>
+        <div class="text-5xl text-white p-4 flex flex-row h-20">
+            <div class="w-40">
+            </div>
+            <h1 class="flex justify-center items-center font-black flex-grow">My TODO Tasks</h1>
+            <div class="w-40 flex justify-center items-center">
+                <button class="bg-red-500 text-2xl p-2 rounded-lg w-36 text-bold" @click="logoutUser">Logout</button>
+            </div>
         </div>
         <div class="p-5 flex flex-row h-full mb-3">
             <div class="h-full bg-white m-3 rounded-lg basis-4/12 flex flex-col">
@@ -30,6 +35,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Task from './TaskComponent.vue'
 import Popup from './PopupComponent.vue'
 
@@ -48,11 +54,18 @@ export default {
         },
     },
     methods: {
+        ...mapActions(['logout']),
         closePopup() {
             this.open = false
         },
         openPopup() {
             this.open = true
+        },
+        logoutUser() {
+            this.logout()
+                .then(redirect => {
+                    this.$router.push({ name: 'home' });
+                });
         }
     }
 }

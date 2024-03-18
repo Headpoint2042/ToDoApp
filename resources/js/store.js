@@ -30,7 +30,7 @@ const store = createStore({
         });
     },
     logout({ commit }) {
-      axios.post('/logout')
+      axios.post('/api/logout')
         .then(() => {
           commit('logout');
         })
