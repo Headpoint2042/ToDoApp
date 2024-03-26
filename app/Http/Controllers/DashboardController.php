@@ -12,8 +12,8 @@ class DashboardController extends Controller
 
     }
 
-    public function getTasks(Request $request) {
+    public function getTasks($userEmail) {
 
-        return "";
+        return "Something from the backend" . $userEmail;
     }
 }

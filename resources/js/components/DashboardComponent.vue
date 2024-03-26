@@ -15,7 +15,7 @@
                 <div class="flex-grow p-2">
                     <ul>
                         <li>
-                            <Task/>
+                            <Task message = "The new props" :location="1" />
                         </li>
                     </ul>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="flex-grow p-2">
                     <ul>
                         <li>
-                            <Task/>
+                            <Task message="The props" :location="2"/>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="flex-grow p-2">
                     <ul>
                         <li>
-                            <Task/>
+                            <Task message = "the props " :location="3"/>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { Store, mapActions, storeKey } from 'vuex';
 import Task from './TaskComponent.vue'
 import Popup from './PopupComponent.vue'
 
@@ -87,7 +87,30 @@ export default {
                 .then(redirect => {
                     this.$router.push({ name: 'home' });
                 });
+        },
+        async fetchTasks() {
+            try {
+                const response = await axios.get(`/api/getTasks/${this.$store.getters.currentUser}`).catch(error => {
+                    console.log(error);
+                });
+                console.log(this.$store.getters.currentUser);
+                console.log("response", response)
+                const data = response.data;
+
+                for (const key in data) {
+                    const item = data[key];
+
+                    if (item.type === "ToDo") {
+                    this.toDo.push(item.message);
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
         }
+    },
+    created() {
+        this.fetchTasks();
     }
 }
 </script>

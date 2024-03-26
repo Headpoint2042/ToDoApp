@@ -25,7 +25,7 @@ class AuthenticationController extends Controller
             $request->session()->regenerate();
 
             return response()->json([
-                'user' => Auth::user(),
+                'user' => Auth::user()->email,
                 'redirect' => '/dashboard'
             ]);
         }
@@ -55,7 +55,7 @@ class AuthenticationController extends Controller
             $request->session()->regenerate();
 
             return response()->json([
-                'user' => Auth::user(),
+                'user' => Auth::user()->email,
                 'redirect' => '/dashboard'
             ]);
         }

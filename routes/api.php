@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
@@ -26,3 +27,5 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('login');
 
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+
+Route::get('/getTasks/{userEmail}', [DashboardController::class, 'getTasks'])->middleware('auth:sanctum');
