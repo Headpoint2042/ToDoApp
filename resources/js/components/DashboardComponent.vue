@@ -93,15 +93,20 @@ export default {
                 const response = await axios.get(`/api/getTasks/${this.$store.getters.currentUser}`).catch(error => {
                     console.log(error);
                 });
-                console.log(this.$store.getters.currentUser);
-                console.log("response", response)
                 const data = response.data;
+                console.log(data);
 
                 for (const key in data) {
                     const item = data[key];
 
                     if (item.type === "ToDo") {
-                    this.toDo.push(item.message);
+                        this.toDo.push(item);
+                    } else if (item.type === "Doing") {
+                        this.Doing.push(item);
+                    } else if (item.type === "Done") {
+                        this.Done.push(item);
+                    } else {
+                        console.log("Error Not the correct type of the task form server");
                     }
                 }
             } catch (error) {

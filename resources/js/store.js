@@ -22,8 +22,6 @@ const store = createStore({
                 .then(response => {
                     commit('setUser', response.data.user);
                     resolve(response.data.redirect);
-                    console.log("Redirect")
-                    console.log(this.getters.currentUser);
                 })
                 .catch(error => {
                 console.error(error);

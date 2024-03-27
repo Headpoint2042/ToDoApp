@@ -20,14 +20,10 @@ const app = createApp(App);
 app.use(router)
 
 // Extract user data from the HTML response
-const metaTag = document.querySelector('meta[name="user-data"]');
-if (metaTag) {
-    // Extract user data from the meta tag
-    const userData = metaTag.getAttribute('content');
-    const user = JSON.parse(userData);
-
+const userData = document.querySelector('meta[name="user-data"]').getAttribute('content');
+if (userData) {
     // Initialize the Vuex store with the user data
-    store.commit('setUser', user);
+    store.commit('setUser', userData);
 } else {
     // User is not authenticated, set user to null in Vuex store
     store.commit('setUser', null);

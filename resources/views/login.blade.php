@@ -8,6 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="user-data" content="{{ $user }}">
 
+
         <title>Laravel</title>
         @vite('resources/css/app.css')
     </head>

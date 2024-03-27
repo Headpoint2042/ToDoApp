@@ -12,8 +12,12 @@ class ViewController extends Controller
         // Check if the user is logged in
         $user = Auth::user();
 
-        // Serialize user data to JSON
-        $userData = json_encode($user);
+        if ($user == null) {
+            $userData = null;
+        } else {
+            $userData = $user->email;
+        }
+
 
         // Return the view with user data or null user
         return view('login', ['user' => $userData]);
